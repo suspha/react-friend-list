@@ -4,10 +4,22 @@ import { BrowserRouter as Router, Switch, Route, Link} from "react-router-dom";
 function NavBar() {
   return (
     <nav>
-      <div><Link to="/">Home</Link></div>
-      <div><Link to="/login">Login</Link></div>
-      <div><Link to="/signup">Signup</Link></div>
-      <a href="#">Logout</a>
+      <ul className="nav-home">
+        <li>
+          <Link to="/">Home</Link>
+        </li>        
+      </ul>
+      <ul className="nav-links">
+        <li>
+        <Link to="/login">Login</Link>
+        </li>
+        <li><
+          Link to="/signup">Signup</Link>
+        </li>
+        {/* <li>
+           <a href="#">Logout</a> 
+        </li> */}
+      </ul>
     </nav>
   );
 }
