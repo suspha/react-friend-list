@@ -3,19 +3,14 @@ import { useHistory } from "react-router-dom";
 
 function SignupView() {
   const [errors, setErrors] = useState({ name: '', email: '', password: '' })
+  const [values, setValues] = useState({ name: '', email: '', password: '', repeat: '' })
   const history = useHistory();
 
   async function handleSignup(e){
     console.log(e)
     e.preventDefault() //reloader ikke hele siden
 
-    // get form data
-    const form = e.target
-    const name = form.name.value
-    const email = form.email.value
-    const password = form.password.value
-    const repeat = form.repeat.value
-    const data = {name, email, password, repeat}
+    console.log(values)
 
     // submit to api
     let result = await fetch('http://localhost:3001/signup', {
@@ -24,7 +19,7 @@ function SignupView() {
         'Accept': 'application/json',
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(data)
+      body: JSON.stringify(values)
     })
     result = await result.json()
     console.log(result)
@@ -36,28 +31,32 @@ function SignupView() {
     }
   }
 
+  function updateValue(field, event) {
+    setValues({ ...values, [field]: event.target.value })
+  }
+
   return (
     <>
     <h1>Signup</h1>
     <form onSubmit={ handleSignup }>
       <div>
         <label>Name</label><br/>
-        <input type="text" name="name"/>
-        <div className="error-msg error-name">{ errors.name }</div>
+        <input type="text" name="name" onChange={e => updateValue('name',  e)}/>
+        <div className="error-msg">{ errors.name }</div>
       </div>
       <div>
-        <label>email</label><br/>
-        <input type="text" name="email"/>
-        <div className="error-msg error-email">{ errors.email }</div>
+        <label>Email</label><br/>
+        <input type="text" name="email" onChange={e => updateValue('email',  e)}/>
+        <div className="error-msg">{ errors.email }</div>
       </div>
       <div>
         <label>Password</label><br/>
-        <input type="password" name="password"/>
-        <div className="error-msg error-password">{ errors.password }</div>
+        <input type="password" name="password" onChange={e => updateValue('password',  e)}/>
+        <div className="error-msg">{ errors.password }</div>
       </div>
       <div>
         <label>Repeat Password</label><br/>
-        <input type="password" name="repeat"/>
+        <input type="password" name="repeat" onChange={e => updateValue('repeat',  e)}/>
       </div>
       <button>Submit</button>
     </form>
