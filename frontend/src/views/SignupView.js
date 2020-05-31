@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import { useHistory } from "react-router-dom";
 import { Link } from "react-router-dom";
+import { ajax } from "../lib/tools";
 
 function SignupView() {
   const [errors, setErrors] = useState({ name: '', email: '', password: '' })
@@ -11,16 +12,7 @@ function SignupView() {
     e.preventDefault() //reloader ikke hele siden
 
     // submit to api
-    let result = await fetch('http://localhost:3001/signup', {
-      method: 'POST',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(values)
-    })
-    result = await result.json()
-
+    const result = await ajax('/signup', values)
     // if error display error
     if(result.errors) {
       setErrors(result.errors)

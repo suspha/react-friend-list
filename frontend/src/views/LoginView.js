@@ -1,7 +1,7 @@
 import React, { useState, useContext } from 'react';
 import { Link } from "react-router-dom";
 import { useHistory } from "react-router-dom";
-import { cookie } from "../lib/tools";
+import { cookie, ajax } from "../lib/tools";
 import { AppContext } from '../AppContext'
 
 function LoginView() {
@@ -15,15 +15,7 @@ function LoginView() {
     e.preventDefault()
 
     // submit to api
-    let result = await fetch('http://localhost:3001/login', {
-      method: 'POST',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(values)
-    })
-    result = await result.json()
+    const result = await ajax('/login', values)
     if(result.errors) {
       setErrors(result.errors)
     } else {

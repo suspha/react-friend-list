@@ -5,6 +5,7 @@ import HomeView from './views/HomeView';
 import LoginView from './views/LoginView';
 import SignupView from './views/SignupView';
 import FriendView from './views/FriendView';
+import SettingsView from './views/SettingsView';
 import { BrowserRouter as Router, Switch, Route} from "react-router-dom";
 import { AppProvider } from './AppContext';
 
@@ -27,6 +28,9 @@ function App() {
             </Route>
             <Route path="/friends">
               <FriendView />
+            </Route>
+            <Route path="/settings">
+              <SettingsView />
             </Route>
           </Switch>
         </div>

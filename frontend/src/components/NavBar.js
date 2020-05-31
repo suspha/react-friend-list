@@ -28,10 +28,13 @@ function NavBar() {
           authenticated && (
             <>
             <li>
-              <a href="/logout" onClick={ handleLogout }>Logout</a>
+              <Link to="/friends">Friend list</Link>
             </li>
             <li>
-              <Link to="/login">Login</Link>
+              <Link to="/settings">Settings</Link>
+            </li>
+            <li>
+              <a href="/logout" onClick={ handleLogout }>Logout</a>
             </li>
             </>
           )
