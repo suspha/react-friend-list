@@ -14,7 +14,6 @@ Nav a{
   color: black;
 }
 
-
 .nav-links {
   width: 10%;
   display: flex;
@@ -29,4 +28,32 @@ Nav a{
   justify-content: flex-start;
   align-items: center;
   list-style: none;
+}
+
+.error-msg {
+  color: red;
+  padding: 8px 0;
+}
+
+.login-link {
+  margin: 2rem 0;
+}
+
+.submit-button {
+  padding: 8px 20px;
+  background: black;
+  color: white;
+  font-size: 16px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+input {
+  width: 30%;
+  padding: 10px 20px;
+  margin: 5px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
 }

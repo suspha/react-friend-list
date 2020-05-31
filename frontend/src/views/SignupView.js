@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import { useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 function SignupView() {
   const [errors, setErrors] = useState({ name: '', email: '', password: '' })
@@ -7,10 +8,7 @@ function SignupView() {
   const history = useHistory();
 
   async function handleSignup(e){
-    console.log(e)
     e.preventDefault() //reloader ikke hele siden
-
-    console.log(values)
 
     // submit to api
     let result = await fetch('http://localhost:3001/signup', {
@@ -22,7 +20,7 @@ function SignupView() {
       body: JSON.stringify(values)
     })
     result = await result.json()
-    console.log(result)
+
     // if error display error
     if(result.errors) {
       setErrors(result.errors)
@@ -58,7 +56,10 @@ function SignupView() {
         <label>Repeat Password</label><br/>
         <input type="password" name="repeat" onChange={e => updateValue('repeat',  e)}/>
       </div>
-      <button>Submit</button>
+      <div className="login-link">Already signed up in?
+        <Link to="/login"> Login</Link>
+      </div>
+      <button className="submit-button">Submit</button>
     </form>
     </>
 

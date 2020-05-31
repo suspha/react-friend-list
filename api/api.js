@@ -35,7 +35,6 @@ app.get('/v1/friends', async (req, res) => {
 
 
 app.post('/signup', async (req, res) => {
-  console.log(req.params)
   // Validate data
   const {name, email, password, repeat} = req.params
 
@@ -60,3 +59,18 @@ app.post('/signup', async (req, res) => {
   return result
 })
 
+app.post('/login', async (req, res) => {
+  // Validate data
+  console.log(req.params)
+  const {email, password} = req.params
+  const errors = {}
+  // Return error if not validate
+  const user = await db('user').get({email, password })
+  console.log(user)
+  // Check if user exist in db
+  if (user === null) {
+    errors.user = "User does not exist"
+    return { errors }
+  }
+  return {_id: user._id}
+})
