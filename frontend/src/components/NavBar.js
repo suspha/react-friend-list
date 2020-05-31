@@ -1,15 +1,19 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link, useHistory } from "react-router-dom";
 import { cookie } from "../lib/tools";
+import { AppContext } from '../AppContext'
 
-function NavBar(props) {
+function NavBar() {
+  const [ authenticated, setAuthenticated ] = useContext(AppContext)
+
   const history = useHistory()
-  function handleLogout() {
+  function handleLogout(e) {
+    e.preventDefault()
     // Delete cookie
     cookie('user', '', -1)
     // Redirect to homepage
     history.push('/')
-    props.setAuthenticated(false)
+    setAuthenticated(false)
   }
 
   return (
@@ -21,10 +25,10 @@ function NavBar(props) {
       </ul>
       <ul className="nav-links">
         {
-          props.authenticated && (
+          authenticated && (
             <>
             <li>
-              <button onClick={ handleLogout }>Logout</button>
+              <a href="/logout" onClick={ handleLogout }>Logout</a>
             </li>
             <li>
               <Link to="/login">Login</Link>
@@ -33,7 +37,7 @@ function NavBar(props) {
           )
         }
         {
-          !props.authenticated && (
+          !authenticated && (
             <>
             <li>
               <Link to="/login">Login</Link>

@@ -1,9 +1,12 @@
-import React, {useState} from 'react';
+import React, { useState, useContext } from 'react';
 import { Link } from "react-router-dom";
 import { useHistory } from "react-router-dom";
 import { cookie } from "../lib/tools";
+import { AppContext } from '../AppContext'
 
-function LoginView(props) {
+function LoginView() {
+  /* eslint-disable no-unused-vars */
+  const [ authenticated, setAuthenticated ] = useContext(AppContext)
   const [errors, setErrors] = useState({  email: '', password: '' })
   const [values, setValues] = useState({  email: '', password: ''})
   const history = useHistory()
@@ -25,7 +28,7 @@ function LoginView(props) {
       setErrors(result.errors)
     } else {
       cookie('user', result._id)
-      props.setAuthenticated(true)
+      setAuthenticated(true)
       history.push('/friends')
     }
   }
@@ -50,10 +53,10 @@ function LoginView(props) {
         <div className="login-link">Not signed up yet?
           <Link to="/signup"> Signup</Link>
         </div>
-        <button className="submit-button" >Submit</button>
+        <button className="submit-button">Submit</button>
       </form>
     </>
   );
 }
 
-export default LoginView;
+export default LoginView
