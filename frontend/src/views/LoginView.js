@@ -6,7 +6,9 @@ import { AppContext } from '../AppContext'
 
 function LoginView() {
   /* eslint-disable no-unused-vars */
-  const [ authenticated, setAuthenticated ] = useContext(AppContext)
+  const context = useContext(AppContext)
+  const [ authenticated, setAuthenticated ] = context.auth
+  const [ notification, setNotification ] = context.notify
   const [errors, setErrors] = useState({  email: '', password: '' })
   const [values, setValues] = useState({  email: '', password: ''})
   const history = useHistory()
@@ -21,6 +23,7 @@ function LoginView() {
     } else {
       cookie('user', result._id)
       setAuthenticated(true)
+      setNotification('You are logged in!')
       history.push('/friends')
     }
   }

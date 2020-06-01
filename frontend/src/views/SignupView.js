@@ -1,9 +1,12 @@
-import React, {useState} from 'react';
+import React, {useState, useContext} from 'react';
 import { useHistory } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { ajax } from "../lib/tools";
+import { AppContext } from '../AppContext'
 
 function SignupView() {
+  const context = useContext(AppContext)
+  const [ notification, setNotification ] = context.notify
   const [errors, setErrors] = useState({ name: '', email: '', password: '' })
   const [values, setValues] = useState({ name: '', email: '', password: '', repeat: '' })
   const history = useHistory();
@@ -18,6 +21,7 @@ function SignupView() {
       setErrors(result.errors)
     } else {
       history.push('/login')
+      setNotification('Welcome, please log in!')
     }
   }
 

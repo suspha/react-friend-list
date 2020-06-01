@@ -4,8 +4,9 @@ import { cookie } from "../lib/tools";
 import { AppContext } from '../AppContext'
 
 function NavBar() {
-  const [ authenticated, setAuthenticated ] = useContext(AppContext)
-
+  const context = useContext(AppContext)
+  const [ authenticated, setAuthenticated ] = context.auth
+  const [notification, setNotification] = context.notify
   const history = useHistory()
 
   function handleToggleTheme() {
@@ -26,6 +27,7 @@ function NavBar() {
     // Redirect to homepage
     history.push('/')
     setAuthenticated(false)
+    setNotification('Goodbye!')
   }
 
   return (

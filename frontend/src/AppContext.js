@@ -5,11 +5,13 @@ export const AppContext = createContext()
 
 // Data store
 export const AppProvider = function(props) {
+  const context = {}
   const isLoggedIn = !!cookie('user')
-  const [authenticated, setAuthenticated] = useState(isLoggedIn)
+  context.auth = useState(isLoggedIn)
+  context.notify = useState('')
 
   return (
-    <AppContext.Provider value={[authenticated, setAuthenticated]}>
+    <AppContext.Provider value={context}>
       {props.children}
     </AppContext.Provider>
   )
