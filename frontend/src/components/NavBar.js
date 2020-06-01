@@ -7,6 +7,18 @@ function NavBar() {
   const [ authenticated, setAuthenticated ] = useContext(AppContext)
 
   const history = useHistory()
+
+  function handleToggleTheme() {
+    let theme = localStorage.getItem('theme')
+    if(!theme) {
+      localStorage.setItem('theme','darkTheme')
+      document.body.classList.add('darkTheme')
+    } else {
+      localStorage.removeItem('theme')
+      document.body.classList.remove('darkTheme')
+    }
+  }
+
   function handleLogout(e) {
     e.preventDefault()
     // Delete cookie
@@ -21,6 +33,9 @@ function NavBar() {
       <ul className="nav-home">
         <li>
           <Link to="/">Home</Link>
+        </li>
+        <li>
+          <button onClick={ handleToggleTheme }>Toggle theme</button>
         </li>
       </ul>
       <ul className="nav-links">

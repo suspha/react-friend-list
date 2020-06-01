@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useReducer} from 'react';
 import './App.css';
 import NavBar from './components/NavBar';
 import HomeView from './views/HomeView';
@@ -10,6 +10,9 @@ import { BrowserRouter as Router, Switch, Route} from "react-router-dom";
 import { AppProvider } from './AppContext';
 
 function App() {
+  const theme = localStorage.getItem('theme')
+  document.body.classList.add(theme)
+
   return (
     <Router>
       <AppProvider>
