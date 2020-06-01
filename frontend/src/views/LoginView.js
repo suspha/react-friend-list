@@ -5,9 +5,10 @@ import { cookie, ajax } from "../lib/tools";
 import { AppContext } from '../AppContext'
 
 function LoginView() {
-  /* eslint-disable no-unused-vars */
   const context = useContext(AppContext)
+  /* eslint-disable no-unused-vars */
   const [ authenticated, setAuthenticated ] = context.auth
+  /* eslint-disable no-unused-vars */
   const [ notification, setNotification ] = context.notify
   const [errors, setErrors] = useState({  email: '', password: '' })
   const [values, setValues] = useState({  email: '', password: ''})

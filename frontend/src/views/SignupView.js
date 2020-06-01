@@ -6,6 +6,7 @@ import { AppContext } from '../AppContext'
 
 function SignupView() {
   const context = useContext(AppContext)
+    /* eslint-disable no-unused-vars */
   const [ notification, setNotification ] = context.notify
   const [errors, setErrors] = useState({ name: '', email: '', password: '' })
   const [values, setValues] = useState({ name: '', email: '', password: '', repeat: '' })

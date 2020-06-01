@@ -6,6 +6,7 @@ import { AppContext } from '../AppContext'
 function NavBar() {
   const context = useContext(AppContext)
   const [ authenticated, setAuthenticated ] = context.auth
+    /* eslint-disable no-unused-vars */
   const [notification, setNotification] = context.notify
   const history = useHistory()
 
