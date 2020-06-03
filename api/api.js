@@ -16,7 +16,7 @@ const app = new Sirloin({
 // Middleware functions are run in the order that they are added
 app.use(async (req, res) => {
   // Enable CORS
-  res.setHeader('Access-Control-Allow-Origin', '*')
+  res.setHeader('Access-Control-Allow-Origin', req.headers.origin)
   res.setHeader('Access-Control-Allow-Credentials', 'true')
   res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization, Cache-Control')
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE')
@@ -61,16 +61,67 @@ app.post('/signup', async (req, res) => {
 
 app.post('/login', async (req, res) => {
   // Validate data
-  console.log(req.params)
   const {email, password} = req.params
   const errors = {}
   // Return error if not validate
   const user = await db('user').get({email, password })
-  console.log(user)
   // Check if user exist in db
   if (user === null) {
     errors.user = "User does not exist"
     return { errors }
   }
   return {_id: user._id}
+})
+
+app.post('/settings/email', async (req, res) => {
+  // Get id from cookie
+  const _id = req.cookie('user')
+
+  // Get user from db
+  const user = await db('user').get({_id})
+  if(!user) {
+    return { errors: "User not found" }
+  }
+
+  const {email} = req.params
+
+  // validate email
+  if(!email || email.length < 4) {
+    return { errors: "Email is not valid" }
+  }
+  await db('user').update({_id}, {email})
+  console.log({_id})
+  return {}
+
+})
+
+  app.post('/settings/password', async (req, res) => {
+  // Get id from cookie
+  const _id = req.cookie('user')
+
+  // Check user
+  const user = await db('user').get({_id})
+  if(!user) {
+    return { errors: "User not found" }
+  }
+  // Get parameters Validate parameters
+  const {current, password, repeat} = req.params
+
+  // 1. Check that old password is correct or error
+  const userWithPassword = await db('user').get( {_id, password})
+  if(!userWithPassword) {
+    return { errors: "Current password is incorrect"}
+  }
+  // 2. Check that password is more than 4 or error
+  if(password.length < 4) {
+    return { errors: "Password is too short"}
+  }
+  // 3. Check that password and repeat are equal or error
+  if(repeat !== password) {
+    return { errors: "Password is not valid" }
+  }
+  // Update password in db and return empty object
+  await db('user').update({_id}, {password})
+  return {}
+
 })

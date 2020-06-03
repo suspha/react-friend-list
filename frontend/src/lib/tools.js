@@ -14,6 +14,7 @@ export const cookie = window.cookie = function(key, val, time) {
 export const ajax = async function(path, values = {}) {
   const result = await fetch(BASE + path, {
     method: 'POST',
+    credentials: 'include',
     headers: {
       'Accept': 'application/json',
       'Content-Type': 'application/json',
