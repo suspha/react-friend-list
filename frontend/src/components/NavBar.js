@@ -38,7 +38,7 @@ function NavBar() {
           <Link to="/">Home</Link>
         </li>
         <li>
-          <button onClick={ handleToggleTheme }>Toggle theme</button>
+          <button className="toggle-button" onClick={ handleToggleTheme }>Switch mode</button>
         </li>
       </ul>
       <ul className="nav-links">

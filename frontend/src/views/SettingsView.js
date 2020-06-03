@@ -43,28 +43,32 @@ function SettingsView() {
     <>
     <h1>Settings</h1>
     <form onSubmit={ handleSaveEmail }>
+      <div className="settings-form">
       <h3>Update email</h3>
-      <div>
-        <label>Email</label><br/>
-        <input type="text" name="email" onChange={e => updateEmailValue(e)}/>
-        <button>Save</button>
+        <div>
+          <label>Email</label><br/>
+          <input type="text" name="email" onChange={e => updateEmailValue(e)}/>
+        </div>
+        <button className="save-button">Save</button>
       </div>
     </form>
     <form onSubmit= {handleSavePassword}>
+      <div className="settings-form">
       <h3>Update email</h3>
-      <div>
-        <label>Current Password</label><br/>
-        <input type="password" name="current" onChange={e => updatePasswordValue(e)}/>
+        <div>
+          <label>Current Password</label><br/>
+          <input type="password" name="current" onChange={e => updatePasswordValue(e)}/>
+        </div>
+        <div>
+          <label>New Password</label><br/>
+          <input type="password" name="password" onChange={e => updatePasswordValue(e)}/>
+        </div>
+        <div>
+          <label>Repaet Password</label><br/>
+          <input type="password" name="repeat" onChange={e => updatePasswordValue(e)}/>
+        </div>
+        <button className="save-button">Save</button>
       </div>
-      <div>
-        <label>New Password</label><br/>
-        <input type="password" name="password" onChange={e => updatePasswordValue(e)}/>
-      </div>
-      <div>
-        <label>Repaet Password</label><br/>
-        <input type="password" name="repeat" onChange={e => updatePasswordValue(e)}/>
-      </div>
-      <button className="save-button">Save</button>
     </form>
     </>
   );

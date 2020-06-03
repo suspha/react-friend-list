@@ -24,9 +24,9 @@ Nav a {
 }
 
 .nav-home {
-  width: 30%;
+  width: 40%;
   display: flex;
-  justify-content: flex-start;
+  justify-content: space-between;
   align-items: center;
   list-style: none;
 }
@@ -40,13 +40,14 @@ Nav a {
   margin: 2rem 0;
 }
 
-.submit-button {
+.submit-button, .save-button {
   padding: 8px 20px;
   background: black;
   color: white;
   font-size: 16px;
   border-radius: 6px;
   cursor: pointer;
+  margin-top: 1rem;
 }
 
 input {
@@ -57,4 +58,23 @@ input {
   border: 1px solid #ccc;
   border-radius: 4px;
   box-sizing: border-box;
+}
+
+.settings-form{
+  border: 1px dashed brown;
+  width: 50%;
+  margin: 0 auto;
+  margin-top: 2rem;
+  padding: 1rem;
+  border-radius: 8px;
+}
+
+.toggle-button{
+  border: 1px solid black;
+  border-radius: 4px;
+  background: black;
+  padding: 8px 12px;
+  font-size: 16px;
+  cursor: pointer;
+  color: white;
 }
