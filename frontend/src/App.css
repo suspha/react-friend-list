@@ -7,8 +7,8 @@ Nav{
   display: flex;
   justify-content: space-around;
   align-items: center;
-  min-height: 10vh;
-  background: lightblue;
+  min-height: 12vh;
+  background: #c39797;
 }
 
 Nav a {
@@ -24,7 +24,7 @@ Nav a {
 }
 
 .nav-home {
-  width: 40%;
+  width: 44%;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -55,13 +55,17 @@ input {
   padding: 10px 20px;
   margin: 5px 0;
   display: inline-block;
-  border: 1px solid #ccc;
+  border: 1px solid #534c5c;;
   border-radius: 4px;
   box-sizing: border-box;
 }
 
+form {
+  margin-bottom: 4rem;
+}
+
 .settings-form{
-  border: 1px dashed brown;
+  border: 1px dashed #534c5c;;
   width: 50%;
   margin: 0 auto;
   margin-top: 2rem;
@@ -70,9 +74,9 @@ input {
 }
 
 .toggle-button{
-  border: 1px solid black;
+  border: 1px solid white;
   border-radius: 4px;
-  background: black;
+  background: #534c5c;
   padding: 8px 12px;
   font-size: 16px;
   cursor: pointer;
