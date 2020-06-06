@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react';
-import { cookie, ajax } from "../lib/tools";
+import { ajax } from "../lib/tools";
 import { AppContext } from '../AppContext'
 
 function SettingsView() {

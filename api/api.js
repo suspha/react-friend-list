@@ -125,3 +125,42 @@ app.post('/settings/email', async (req, res) => {
   return {}
 
 })
+
+app.post('/friend/create' , async (req, res) => {
+  // Check if we are logged in with valid user
+  const _id = req.cookie('user')
+  if(!_id || _id.length < 5){
+    return {}
+  }
+  const user = await db('user').get({_id})
+   if(!user) {
+     return {}
+   }
+
+  // validate
+  const { name, email, phone, address } = req.params
+  const errors = {}
+  if(name.length < 2) {
+    errors.name = "Name must be more than 2 characters"
+  }
+  if(phone.length < 8) {
+    errors.phone = "Phone number is too short"
+  }
+  if(email.length < 4) {
+    errors.email =  "Email is not valid"
+  }
+
+  const hasErrors = Object.keys(errors).length > 0
+  if(hasErrors) {
+    return {errors}
+  }
+  // Save in DB
+  const result = await db('friend').create({name, email, phone, address})
+  return result
+
+})
+
+app.post('/friend/list' , async (req, res) => {
+  const friends = await db('friend').find()
+  return friends
+})

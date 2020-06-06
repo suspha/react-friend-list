@@ -7,6 +7,7 @@ import LoginView from './views/LoginView';
 import SignupView from './views/SignupView';
 import FriendView from './views/FriendView';
 import SettingsView from './views/SettingsView';
+import CreateFriendView from './views/CreateFriendView';
 import { BrowserRouter as Router, Switch, Route} from "react-router-dom";
 import { AppProvider } from './AppContext';
 
@@ -36,6 +37,9 @@ function App() {
             </Route>
             <Route path="/settings">
               <SettingsView />
+            </Route>
+            <Route path="/friend/create">
+              <CreateFriendView />
             </Route>
           </Switch>
         </div>
