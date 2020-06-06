@@ -31,6 +31,10 @@ Nav a {
   list-style: none;
 }
 
+a {
+  padding: 0 5px;
+}
+
 .error-msg {
   color: red;
   padding: 8px 0;
@@ -85,4 +89,29 @@ form {
 
 .friend-list {
   margin: 1rem;
+}
+
+.friend-list-page{
+  margin-top: 4rem;
+}
+
+.friend-list-view{
+  margin: 3rem 0;
+}
+
+a.add-buttonLink {
+  font-size: 20px;
+  color: #534c5c;
+  background: transparent;
+  border: 1px solid #534c5c;;
+  padding: 8px 16px;
+  text-decoration: none;
+  border-radius: 8px;
+}
+
+textarea {
+  width: 375px;
+  height: 120px;
+  border-radius: 4px;
+
 }

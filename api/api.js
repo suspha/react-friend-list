@@ -126,6 +126,8 @@ app.post('/settings/email', async (req, res) => {
 
 })
 
+// CREATE FRIEND
+
 app.post('/friend/create' , async (req, res) => {
   // Check if we are logged in with valid user
   const _id = req.cookie('user')
@@ -164,3 +166,17 @@ app.post('/friend/list' , async (req, res) => {
   const friends = await db('friend').find()
   return friends
 })
+
+// DELETE friend
+app.post('/friend/delete' , async (req, res) => {
+  const userId = req.cookie('user')
+  if(!userId || userId.length < 5){
+    return {}
+  }
+  const {_id} = req.params
+
+  const result = await db('friend').delete({ _id})
+  return result
+})
+
+

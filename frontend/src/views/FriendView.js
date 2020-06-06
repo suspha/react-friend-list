@@ -6,7 +6,6 @@ function FriendView() {
   const [friends, setFriends]= useState([])
 
   useEffect(()=> {
-    console.log("helle")
     async function friendList() {
       const result = await ajax('/friend/list')
       setFriends(result)
@@ -14,19 +13,20 @@ function FriendView() {
     friendList()
   }, [])
 
-  return (
-    <div>
-      <h1>My list of friends</h1>
-      <Link to="/friend/create">Add new friend + </Link>
-      <div>
-        <h3>List</h3>
+ return (
+    <div className="friend-list-page">
+      <Link className="add-buttonLink" to="/friend/create">Add new friend + </Link>
+      <div className="friend-list-view">
+        <h3>List ({friends.length})</h3>
         <div>
           { friends.map(friend => (
-            <div className="friend-list">
-              <div><b>Name:</b> {friend.name}</div>
-              <div><b>Email:</b> {friend.email}</div>
-              <div><b>Phone:</b> {friend.phone}</div>
-              <div><b>Address:</b>{friend.address}</div>
+            <div className="friend-list" key={friend._id}>
+              <div><b>Name: </b>{friend.name}</div>
+              <div><b>Email: </b>{friend.email}</div>
+              <div><b>Phone: </b>{friend.phone}</div>
+              <div><b>Address: </b>{friend.address}</div>
+              <Link to={`/friend/edit/${friend._id}`}>Edit</Link>
+              <Link to={`/friend/delete/${friend._id}`}>Delete</Link>
             </div>
             ))}
         </div>

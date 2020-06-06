@@ -8,6 +8,8 @@ import SignupView from './views/SignupView';
 import FriendView from './views/FriendView';
 import SettingsView from './views/SettingsView';
 import CreateFriendView from './views/CreateFriendView';
+import EditFriendView from './views/EditFriendView';
+import DeleteFriendView from './views/DeleteFriendView';
 import { BrowserRouter as Router, Switch, Route} from "react-router-dom";
 import { AppProvider } from './AppContext';
 
@@ -40,6 +42,12 @@ function App() {
             </Route>
             <Route path="/friend/create">
               <CreateFriendView />
+            </Route>
+            <Route path="/friend/edit/:_id">
+              <EditFriendView />
+            </Route>
+            <Route path="/friend/delete/:_id">
+              <DeleteFriendView />
             </Route>
           </Switch>
         </div>
