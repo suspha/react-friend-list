@@ -43,10 +43,10 @@ function App() {
             <Route path="/friend/create">
               <CreateFriendView />
             </Route>
-            <Route path="/friend/edit/:_id">
+            <Route path="/friend/edit">
               <EditFriendView />
             </Route>
-            <Route path="/friend/delete/:_id">
+            <Route path="/friend/delete">
               <DeleteFriendView />
             </Route>
           </Switch>

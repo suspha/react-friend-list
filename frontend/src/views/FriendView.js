@@ -25,8 +25,8 @@ function FriendView() {
               <div><b>Email: </b>{friend.email}</div>
               <div><b>Phone: </b>{friend.phone}</div>
               <div><b>Address: </b>{friend.address}</div>
-              <Link to={`/friend/edit/${friend._id}`}>Edit</Link>
-              <Link to={`/friend/delete/${friend._id}`}>Delete</Link>
+              <Link to={{ pathname: `/friend/edit`, state: { friend }}}>Edit</Link>
+              <Link to={{ pathname: `/friend/delete`, state: { friend }}}>Delete</Link>
             </div>
             ))}
         </div>

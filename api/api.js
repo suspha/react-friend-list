@@ -163,7 +163,7 @@ app.post('/friend/create' , async (req, res) => {
 })
 
 app.post('/friend/list' , async (req, res) => {
-  const friends = await db('friend').find()
+  const friends = await db('friend').find({}, { sort: { _id: -1 }})
   return friends
 })
 
@@ -179,4 +179,30 @@ app.post('/friend/delete' , async (req, res) => {
   return result
 })
 
+// UPDATE friend
 
+app.post('/friend/update', async(req, res) => {
+  const userId = req.cookie('user')
+  if(!userId || userId.length < 5){
+    return {}
+  }
+  const {_id, name, address, phone, email} = req.params
+  const errors = {}
+  if(name.length < 2) {
+    errors.name = "Name must be more than 2 characters"
+  }
+  if(phone.length < 8) {
+    errors.phone = "Phone number is too short"
+  }
+  if(email.length < 4) {
+    errors.email =  "Email is not valid"
+  }
+
+  const hasErrors = Object.keys(errors).length > 0
+  if(hasErrors) {
+    return {errors}
+  }
+
+  const result = await db('friend').update({ _id}, {name, address, phone, email})
+  return result
+})

@@ -1,13 +1,15 @@
 import React from 'react';
-import { Link, useParams, useHistory } from "react-router-dom";
+import { Link, useHistory, useLocation } from "react-router-dom";
 import { ajax } from '../lib/tools';
 
 function DeleteFriendView(props) {
-  const { _id } = useParams()
+  const location = useLocation()
+  const { friend } = location.state
   const history = useHistory()
 
   async function handleDeleteFriend() {
-    const result = await ajax('/friend/delete', {_id})
+    const values = {_id: friend._id}
+    await ajax('/friend/delete', values)
     history.push('/friends')
   }
 
